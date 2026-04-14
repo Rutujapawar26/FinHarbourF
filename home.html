@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FINTECH</title>
+  <link rel="stylesheet" href="home.css" />
+</head>
+<body>
+
+<header class="nav">
+  <div class="logo">FINTECH</div>
+  <nav class="links">
+    <a href="faq.html">FAQ</a>
+    <a href="blog.html">Blog</a>
+    <a href="about.html">About</a>
+  </nav>
+
+  <!-- AUTH AREA -->
+  <div id="authArea">
+    <button class="cta" id="openModal">SignIn <span>↗</span></button>
+  </div>
+</header>
+
+<main class="hero">
+  
+  <!-- ORBIT 1 -->
+  <div class="orbit-container orbit-1">
+    <div class="orbit-line"></div>
+
+    <a href="https://cdn.botpress.cloud/webchat/v3.6/shareable.html?configUrl=https://files.bpcontent.cloud/2025/12/12/10/20251212103949-F98QLVIM.json" class="pill-box p-left bg-orange">
+      <div class="pill-icon">₿</div>
+      <div class="pill-content">
+        <h3>FinBot</h3>
+        <p>Heyy!!<br/>My Buddy.</p>
+      </div>
+    </a>
+
+    <a href="goalTracker.html" class="pill-box p-right bg-blue">
+      <div class="pill-icon">◈</div>
+      <div class="pill-content">
+        <h3>Goal Tracker</h3>
+        <p>upgrade your goal<br/>get your goal.</p>
+      </div>
+    </a>
+  </div>
+
+  <!-- ORBIT 2 -->
+  <div class="orbit-container orbit-2">
+    <div class="orbit-line"></div>
+
+    <a href="expense.html" class="pill-box p-left bg-purple">
+      <div class="pill-icon">✦</div>
+      <div class="pill-content">
+        <h3>Expense Tracker</h3>
+        <p>track your money<br/>know what you have.</p>
+      </div>
+    </a>
+
+    <a href="investment.html" class="pill-box p-right bg-green">
+      <div class="pill-icon">Δ</div>
+      <div class="pill-content">
+        <h3>Investment</h3>
+        <p>Invest your money <br/>we are here.</p>
+      </div>
+    </a>
+  </div>
+
+  <!-- CENTER -->
+  <div class="sphere-wrap">
+    <div class="sphere"></div>
+    <div class="sphere-text">
+      <span class="spark">✦</span>
+      <h1 class="sphere-main-text">FINTECH</h1>
+    </div>
+  </div>
+
+</main>
+
+<!-- MODAL -->
+<div id="authModal" class="modal">
+  <div class="modal-content">
+
+    <span class="close">&times;</span>
+
+    <div class="tabs">
+      <button id="loginTab" class="active">Login</button>
+      <button id="signupTab">Sign Up</button>
+    </div>
+
+    <div id="loginForm">
+      <input id="loginEmail" type="email" placeholder="Email">
+      <input id="loginPassword" type="password" placeholder="Password">
+      <button onclick="login()">Login</button>
+    </div>
+
+    <div id="signupForm" style="display:none;">
+      <input id="name" type="text" placeholder="Full Name">
+      <input id="contact" type="tel" placeholder="Contact Number">
+      <input id="email" type="email" placeholder="Email">
+      <input id="password" type="password" placeholder="Password">
+      <button onclick="signup()">Sign Up</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- JS -->
+<script>
+// ===== ELEMENTS =====
+const modal = document.getElementById("authModal");
+let openBtn = document.getElementById("openModal");
+const closeBtn = document.querySelector(".close");
+
+const loginTab = document.getElementById("loginTab");
+const signupTab = document.getElementById("signupTab");
+
+const loginForm = document.getElementById("loginForm");
+const signupForm = document.getElementById("signupForm");
+
+// ===== MODAL =====
+if(openBtn) openBtn.onclick = () => modal.style.display = "block";
+closeBtn.onclick = () => modal.style.display = "none";
+
+window.onclick = (e) => { if(e.target === modal) modal.style.display = "none"; };
+document.addEventListener("keydown", (e) => { if(e.key === "Escape") modal.style.display = "none"; });
+
+// ===== TAB SWITCHING =====
+loginTab.onclick = () => {
+  loginForm.style.display = "block";
+  signupForm.style.display = "none";
+  loginTab.classList.add("active");
+  signupTab.classList.remove("active");
+};
+signupTab.onclick = () => {
+  loginForm.style.display = "none";
+  signupForm.style.display = "block";
+  signupTab.classList.add("active");
+  loginTab.classList.remove("active");
+};
+
+// ===== SIGNUP =====
+// function signup() {
+//   const name = document.getElementById("name").value.trim();
+//   const contact = document.getElementById("contact").value.trim();
+//   const email = document.getElementById("email").value.trim();
+//   const password = document.getElementById("password").value.trim();
+
+//   if(!name || !contact || !email || !password) { alert("Fill all fields"); return; }
+
+//   let users = JSON.parse(localStorage.getItem("users")) || [];
+//   if(users.find(u => u.email === email)) { alert("User already exists"); return; }
+
+//   const newUser = { name, contact, email, password };
+//   users.push(newUser);
+//   localStorage.setItem("users", JSON.stringify(users));
+//   localStorage.setItem("loggedInUser", JSON.stringify(newUser));
+
+//   alert("Signup successful!");
+//   window.location.href = "quiz.html";
+// }
+
+async function signup() {
+  const name = document.getElementById("name").value.trim();
+  const contact = document.getElementById("contact").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+
+  if(!name || !contact || !email || !password) {
+    alert("Fill all fields");
+    return;
+  }
+
+  const res = await fetch("http://localhost:3000/signup", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ name, contact, email, password })
+  });
+
+  const data = await res.json();
+
+  if(res.ok){
+    alert(data.message);
+    localStorage.setItem("loggedInUser", JSON.stringify(data.user));
+    window.location.href = "quiz.html";
+  } else {
+    alert(data.message);
+  }
+}
+
+async function login() {
+  const email = document.getElementById("loginEmail").value.trim();
+  const password = document.getElementById("loginPassword").value.trim();
+
+  const res = await fetch("http://localhost:3000/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ email, password })
+  });
+
+  const data = await res.json();
+
+  if(!res.ok){
+    alert(data.message);
+    return;
+  }
+
+  localStorage.setItem("loggedInUser", JSON.stringify(data.user));
+  alert("Login successful!");
+  modal.style.display = "none";
+  loadUserUI();
+}
+
+// ===== LOGIN =====
+//function login() {
+//   const email = document.getElementById("loginEmail").value.trim();
+//   const password = document.getElementById("loginPassword").value.trim();
+
+//   let users = JSON.parse(localStorage.getItem("users")) || [];
+//   const user = users.find(u => u.email === email && u.password === password);
+
+//   if(!user) { alert("Invalid credentials"); return; }
+
+//   localStorage.setItem("loggedInUser", JSON.stringify(user));
+//   alert("Login successful!");
+//   modal.style.display = "none";
+//   loadUserUI();
+// }
+
+// ===== LOAD USER UI =====
+function loadUserUI() {
+  const authArea = document.getElementById("authArea");
+  const user = JSON.parse(localStorage.getItem("loggedInUser"));
+
+  if(user){
+    authArea.innerHTML = `
+      <div class="profile-box">
+        <span class="user-name">👤 ${user.name}</span>
+        <button id="logoutBtn">Logout</button>
+      </div>
+    `;
+
+    // Attach click events
+    authArea.querySelector(".user-name").addEventListener("click", () => {
+      window.location.href = "profile.html";
+    });
+    authArea.querySelector("#logoutBtn").addEventListener("click", logout);
+  } else {
+    authArea.innerHTML = `<button class="cta" id="openModal">SignIn <span>↗</span></button>`;
+    document.getElementById("openModal").onclick = () => modal.style.display = "block";
+  }
+}
+
+// ===== LOGOUT =====
+function logout() {
+  localStorage.removeItem("loggedInUser");
+  location.reload();
+}
+
+// ===== INIT =====
+loadUserUI();
+</script>
+
+</body>
+</html>

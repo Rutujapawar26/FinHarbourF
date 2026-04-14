@@ -1,0 +1,239 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, .card, .navbar, input, button {
+  transition: all 0.3s ease;
+}
+
+/* BACKGROUND */
+body {
+  font-family: "Inter", sans-serif;
+  background: radial-gradient(circle at 30% 25%, #7ee0da 0%, #00b4d8 30%, #0077b6 60%, #023e8a 100%);
+  color: #020617;
+}
+
+/* DARK MODE */
+body.dark {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+/* NAVBAR */
+.navbar {
+  background: rgba(255,255,255,0.8);
+  margin: 20px;
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+body.dark .navbar {
+  background: rgba(15,23,42,0.9);
+}
+
+/* GRID */
+.dashboard {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 30px;
+  align-items: stretch;
+}
+
+.left-column,
+.right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* RIGHT SIDE EQUAL HEIGHT */
+.right-column {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+
+/* CARD */
+.card {
+  position: relative;
+  background: rgba(255,255,255,0.9);
+  padding: 35px;
+  border-radius: 22px;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+  z-index: 1;
+  height: 100%;
+}
+
+body.dark .card {
+  background: rgba(30,41,59,0.9);
+  box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+}
+
+/* BACKLIGHT GLOW */
+body.dark .card::before {
+  content: "";
+  position: absolute;
+  width: 130%;
+  height: 130%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 30px;
+  background: radial-gradient(circle, rgba(0,180,216,0.35), rgba(34,197,94,0.25), transparent 70%);
+  filter: blur(60px);
+  z-index: -1;
+  opacity: 0.8;
+}
+
+body.dark .card:hover::before {
+  opacity: 1;
+  filter: blur(80px);
+}
+
+/* FORM */
+.create-goal-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 10px;
+}
+
+.full-width {
+  grid-column: span 2;
+}
+
+/* =========================
+   INPUT + CHARACTER COUNTER
+========================= */
+.input-wrapper {
+  position: relative;
+  width: 100%;
+  grid-column: span 2; /* full width in grid */
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 16px;
+  padding-right: 75px; /* space for counter */
+  font-size: 15px;
+  border-radius: 14px;
+  border: none;
+}
+
+#charCount {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: gray;
+  pointer-events: none;
+  transition: color 0.3s ease;
+}
+
+/* DARK MODE INPUT */
+body.dark .input-wrapper input {
+  background: #0f172a;
+  color: white;
+  border: 1px solid #334155;
+}
+
+/* OTHER INPUTS */
+input {
+  padding: 16px;
+  font-size: 15px;
+  border-radius: 14px;
+  border: none;
+}
+
+body.dark input {
+  background: #0f172a;
+  color: white;
+  border: 1px solid #334155;
+}
+
+/* BUTTON */
+button {
+  padding: 16px;
+  border-radius: 16px;
+  border: none;
+  background: linear-gradient(120deg, #00b4d8, #0077b6);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+body.dark button {
+  background: linear-gradient(120deg, #3b82f6, #6366f1);
+}
+
+/* DISABLED BUTTON */
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* GOALS LIST */
+.goals-list {
+  max-height: 350px;
+  overflow-y: auto;
+  padding: 0 5px 30px 0;
+}
+
+/* LAST ITEM SPACE */
+.goal-item:last-child {
+  margin-bottom: 20px;
+}
+
+.goal-item {
+  background: white;
+  padding: 16px;
+  border-radius: 14px;
+  margin-bottom: 14px;
+}
+
+body.dark .goal-item {
+  background: #1e293b;
+}
+
+/* PROGRESS */
+.progress {
+  height: 14px;
+  background: #e2e8f0;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+
+body.dark .progress {
+  background: #334155;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #00b4d8, #22c55e);
+  box-shadow: 0 0 15px rgba(34,197,94,0.6);
+}
+
+/* HISTORY */
+.history {
+  max-height: 120px;
+  overflow-y: auto;
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+/* CHART */
+canvas {
+  max-height: 250px;
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile</title>
+  <link rel="stylesheet" href="profile.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="profile-container">
+
+  <div class="left-panel">
+    <h2>👤 Your Profile</h2>
+
+    <!-- PHOTO -->
+    <div class="photo-section">
+      <div class="photo-wrapper">
+        <img id="profilePic" src="https://via.placeholder.com/150">
+        <label for="uploadPhoto" class="upload-btn">📷</label>
+        <input type="file" id="uploadPhoto" hidden>
+      </div>
+    </div>
+
+    <!-- DETAILS -->
+    <div class="details">
+      <div class="input-group">
+        <label>Full Name</label>
+        <input type="text" id="name">
+      </div>
+
+      <div class="input-group">
+        <label>Email</label>
+        <input type="email" id="email" disabled>
+      </div>
+
+      <div class="input-group">
+        <label>Contact</label>
+        <input type="text" id="contact">
+      </div>
+    </div>
+
+    <button class="save-btn" onclick="saveProfile()">💾 Save</button>
+  </div>
+
+  <div class="right-panel">
+    <h2>📊 Financial Report</h2>
+    <div id="quizData" class="quiz-cards"></div>
+  </div>
+
+</div>
+
+<script src="profile.js"></script>
+</body>
+</html>

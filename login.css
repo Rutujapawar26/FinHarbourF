@@ -1,0 +1,57 @@
+body {
+  margin: 0;
+  font-family: "Inter", system-ui;
+  background: radial-gradient(circle at top, #111827, #020617);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #e5e7eb;
+}
+
+.auth-card {
+  background: linear-gradient(
+    180deg,
+    #020617,
+    #064a61
+  );
+  padding: 40px;
+  width: 360px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 30px 60px rgba(6, 214, 160, 0.35);
+}
+
+.auth-card h1 span {
+  color: #06d6a0;
+}
+
+.auth-card input {
+  width: 100%;
+  padding: 14px;
+  margin: 14px 0;
+  border-radius: 12px;
+  border: 1px solid #118ab2;
+  background: #020617;
+  color: #e6fffa;
+}
+
+.auth-card input::placeholder {
+  color: #94d2bd;
+}
+
+.auth-card button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 16px;
+  border-radius: 14px;
+  border: none;
+  background: radial-gradient(
+    circle at 30% 25%,
+    #118ab2 0%,
+    #06d6a0 100%
+  );
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}

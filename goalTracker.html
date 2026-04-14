@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Goal Tracker</title>
+
+<link rel="stylesheet" href="goalTracker.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+/* 🔥 INPUT + COUNTER STYLING */
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding-right: 70px;
+}
+
+#charCount {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: gray;
+  pointer-events: none;
+  transition: color 0.3s ease;
+}
+</style>
+
+</head>
+
+<body>
+
+<header class="navbar">
+  <h1>Goal Tracker</h1>
+  <button onclick="toggleTheme()">🌙</button>
+</header>
+
+<main class="dashboard">
+
+  <section class="main-grid">
+
+    <!-- LEFT -->
+    <div class="left-column">
+
+      <!-- CREATE GOAL -->
+      <div class="card">
+        <h3>Create Goal</h3>
+
+        <div class="create-goal-form">
+
+          <!-- ✅ UPDATED INPUT WITH COUNTER -->
+          <div class="input-wrapper">
+            <input id="goalName" placeholder="Goal Name" maxlength="30">
+            <span id="charCount">0 / 30</span>
+          </div>
+
+          <input id="targetAmount" type="number" placeholder="Target Amount">
+          <input id="initialSavings" type="number" placeholder="Initial Savings">
+          <input id="deadline" type="date">
+
+          <button onclick="addGoal()">Create Goal</button>
+
+        </div>
+      </div>
+
+      <!-- GOALS -->
+      <div class="card">
+        <h3>Goals</h3>
+        <div id="goalsContainer" class="goals-list"></div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT -->
+    <div class="right-column">
+
+      <div class="card">
+        <canvas id="barChart"></canvas>
+      </div>
+
+      <div class="card">
+        <canvas id="lineChart"></canvas>
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+<script src="goalTracker.js"></script>
+</body>
+</html>

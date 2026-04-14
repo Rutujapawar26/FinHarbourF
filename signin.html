@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FinTech Sign Up</title>
+  <link rel="stylesheet" href="signin.css">
+</head>
+<body>
+
+<div class="auth-container">
+  <div class="auth-card">
+    <h1>Create Your Account</span></h1>
+    <p>Join your finance journey</p>
+
+    <input id="name" type="text" placeholder="Full Name">
+    <input id="contact" type="tel" placeholder="Contact Number (10 digits)">
+    <input id="email" type="email" placeholder="Email">
+
+    <div style="position: relative;">
+      <input id="password" type="password" placeholder="Password">
+      <span onclick="togglePassword()" 
+        style="position:absolute; right:15px; top:50%; transform:translateY(-50%); cursor:pointer;">
+        👁️
+      </span>
+    </div>
+
+    <a href="quiz.html" class="btn" style="color: white; text-decoration: none;">Sign Up</a>
+
+    <p style="margin-top: 15px;">
+      Already have an account? 
+      <a href="login.html" style="color:#06d6a0;">Login</a>
+    </p>
+  </div>
+</div>
+
+<script src="signup.js"></script>
+</body>
+</html>

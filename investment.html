@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Investment Tracker</title>
+
+<link rel="stylesheet" href="investment.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<header class="navbar">
+  <h1>Investment Tracker</h1>
+  <button onclick="toggleTheme()">🌙</button>
+</header>
+
+<main class="dashboard">
+
+<!-- SUMMARY -->
+<section class="summary-cards">
+  <div class="summary-card">
+    <h4>Total Invested</h4>
+    <p id="totalInvested">₹0</p>
+  </div>
+
+  <div class="summary-card">
+    <h4>Returns</h4>
+    <p id="returns">₹0</p>
+  </div>
+
+  <div class="summary-card">
+    <h4>Total Value</h4>
+    <p id="totalValue">₹0</p>
+  </div>
+</section>
+
+<section class="main-grid">
+
+<!-- LEFT -->
+<div class="left-column">
+
+<div class="card">
+<h3>Add Investment</h3>
+
+<div class="create-goal-form">
+
+<!-- NAME WITH COUNTER -->
+<div class="input-wrapper">
+  <input id="name" maxlength="30" placeholder="Name">
+  <span class="char-count" id="nameCount">0/30</span>
+</div>
+
+<input id="amount" type="number" placeholder="Amount">
+
+<input id="rate" type="number" placeholder="Return %">
+<input id="years" type="number" placeholder="Years">
+
+<select id="category">
+<option>Stocks</option>
+<option>Crypto</option>
+<option>Mutual Fund</option>
+<option>Other</option>
+</select>
+
+<select id="risk">
+<option>Low</option>
+<option>Medium</option>
+<option>High</option>
+</select>
+
+<input type="file" id="pdfUpload" accept="application/pdf">
+
+<button class="full-width" onclick="addInvestment()">Add</button>
+
+</div>
+</div>
+
+<div class="card">
+<h3>Your Investments</h3>
+<div id="investmentList" class="goals-list"></div>
+</div>
+
+</div>
+
+<!-- RIGHT -->
+<div class="right-column">
+
+<div class="card">
+<canvas id="pieChart"></canvas>
+</div>
+
+<div class="card">
+<canvas id="lineChart"></canvas>
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+<script src="investment.js"></script>
+</body>
+</html>

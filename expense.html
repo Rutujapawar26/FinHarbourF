@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Expense Tracker</title>
+
+  <link rel="stylesheet" href="expense.css">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<header class="navbar">
+  <h1>Expense Tracker</h1>
+
+  <!-- 🌙 DARK MODE TOGGLE -->
+  <button onclick="toggleDarkMode()" style="padding:10px 15px; border-radius:10px;">
+    🌙
+  </button>
+</header>
+
+<main class="dashboard">
+
+  <section class="summary-cards">
+    <div class="summary-card">
+      <h4>Remaining Balance</h4>
+      <p id="balance">₹0</p>
+    </div>
+
+    <div class="summary-card">
+      <h4>Total Expense</h4>
+      <p id="totalExpense">₹0</p>
+    </div>
+
+    <div class="summary-card">
+      <h4>Monthly Budget</h4>
+      <p>₹50000</p>
+    </div>
+  </section>
+
+  <section class="main-grid">
+
+    <div class="left-column">
+
+      <!-- ADD EXPENSE -->
+      <div class="card">
+        <h3>Add Expense</h3>
+
+        <div class="input-wrapper">
+          <input id="titleInput" maxlength="30" placeholder="Expense Title">
+          <span class="char-count" id="titleCount">0/30</span>
+        </div>
+
+        <input id="amountInput" type="number" placeholder="Amount">
+
+        <select id="categoryInput">
+          <option>Food</option>
+          <option>Travel</option>
+          <option>Shopping</option>
+          <option>Bills</option>
+          <option>Other</option>
+        </select>
+
+        <button onclick="addExpense()">Add Expense</button>
+      </div>
+
+      <!-- CURRENCY CONVERTER -->
+      <div class="card">
+        <h3>Currency Converter</h3>
+
+        <input id="convertAmount" type="number" placeholder="Enter Amount">
+
+        <div style="display:flex; gap:10px; margin-top:10px;">
+          <select id="fromCurrency">
+            <option value="INR">INR</option>
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+          </select>
+
+          <select id="toCurrency">
+            <option value="USD">USD</option>
+            <option value="INR">INR</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+          </select>
+        </div>
+
+        <button onclick="convertCurrency()">Convert</button>
+
+        <p id="conversionResult" style="margin-top:10px; font-weight:bold;"></p>
+      </div>
+
+      <!-- TRANSACTIONS -->
+      <div class="card">
+        <h3>Recent Transactions</h3>
+        <ul id="expenseList" class="transaction-list"></ul>
+      </div>
+
+    </div>
+
+    <!-- CHARTS -->
+    <div class="right-column">
+      <div class="card">
+        <canvas id="pieChart"></canvas>
+      </div>
+
+      <div class="card">
+        <canvas id="barChart"></canvas>
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<script src="expense.js"></script>
+</body>
+</html>
